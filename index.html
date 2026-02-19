@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEOR Portfolio - Case Studies & Evidence Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #9CAF88 0%, #B8C9A8 100%);
+            color: #2c3e50;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #6B8E5F;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #9CAF88;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #9CAF88;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .case-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #9CAF88 0%, #B8C9A8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .case-card h3 {
+            color: #6B8E5F;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .case-tag {
+            display: inline-block;
+            background: #E8F0E5;
+            color: #6B8E5F;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 0.5rem 0.3rem 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .case-description {
+            color: #546e7a;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #90a4ae;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #6B8E5F;
+        }
+
+        .modal h2 {
+            color: #6B8E5F;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .section {
+            margin: 2rem 0;
+        }
+
+        .section h3 {
+            color: #6B8E5F;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #E8F0E5;
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #9CAF88, #B8C9A8);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.3rem;
+            width: 12px;
+            height: 12px;
+            background: #9CAF88;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #E8F0E5;
+        }
+
+        .timeline-item h4 {
+            color: #6B8E5F;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #E8F0E5;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6B8E5F;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            color: #546e7a;
+            font-size: 0.9rem;
+        }
+
+        .deliverable-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .deliverable-list li {
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-left: 4px solid #9CAF88;
+            border-radius: 4px;
+        }
+
+        .deliverable-list li::before {
+            content: '✓';
+            color: #9CAF88;
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #6B8E5F;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #9CAF88 0%, #B8C9A8 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(168, 197, 221, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav {
+                gap: 1rem;
+            }
+
+            .nav-item {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Health Economics & Outcomes Research</h1>
+        <p>Evidence-Based Decision Making | Strategic Planning | Real-World Evidence</p>
+    </div>
+
+    <div class="nav">
+        <div class="nav-item active" data-section="overview">Overview</div>
+        <div class="nav-item" data-section="case-studies">Case Studies</div>
+        <div class="nav-item" data-section="expertise">Expertise</div>
+        <div class="nav-item" data-section="literature-review">Literature Review Tool</div>
+        <div class="nav-item" data-section="contact">Contact</div>
+    </div>
+
+    <div class="container">
+        <h2 style="color: #6B8E5F; margin-bottom: 1.5rem; margin-top: 2rem;">Overview</h2>
+        
+        <div style="background: #E8F0E5; padding: 2rem; border-radius: 8px; margin-bottom: 3rem; border-left: 4px solid #9CAF88;">
+            <p style="color: #2c3e50; line-height: 1.6; margin: 0;">
+                HEOR/Market access professional with 10+ years designing and executing value strategies to support clinical development, pricing, reimbursement, and commercialization. Experienced in engaging cross-functional teams and external stakeholders. Demonstrated success in generating impactful RWE, economic models and payer engagements across multiple therapeutic areas including rare disease, infectious and cardiovascular diseases.
+            </p>
+        </div>
+        
+        <div id="overview" class="intro-section">
+            <h2>Strategic Evidence Solutions for Healthcare Decision-Making</h2>
+            <p>Explore comprehensive case studies demonstrating expertise in Integrated Evidence Planning, market access strategy, and outcomes research across diverse therapeutic areas.</p>
+        </div>
+
+        <h2 id="case-studies" style="color: #6B8E5F; margin-bottom: 1rem;">Featured Case Studies</h2>
+        
+        <div class="case-studies-grid">
+            <div class="case-card" onclick="openModal('iep')">
+                <div class="case-icon">📊</div>
+                <h3>Integrated Evidence Plan (IEP)</h3>
+                <div>
+                    <span class="case-tag">Sample IEP</span>
+                </div>
+                <p class="case-description">Comprehensive IEP development for a novel immuno-oncology agent, addressing global market access challenges and HTA requirements across multiple jurisdictions.</p>
+            </div>
+
+            <div class="case-card" onclick="openModal('evidence-strategy')">
+                <div class="case-icon">🎯</div>
+                <h3>Evidence Strategy & HEOR</h3>
+                <div>
+                    <span class="case-tag">Rare Disease</span>
+                    <span class="case-tag">Polycythemia Vera</span>
+                    <span class="case-tag">Hepatitis D</span>
+                </div>
+                <p class="case-description">Strategic evidence generation plans including ultra-rare metabolic disease and comprehensive Polycythemia Vera HEOR strategy with comparative effectiveness framework across multiple comparators.</p>
+            </div>
+
+            <div class="case-card" onclick="openModal('rwe')">
+                <div class="case-icon">📈</div>
+                <h3>Real-World Evidence Study Examples</h3>
+                <div>
+                    <span class="case-tag">Comparative Effectiveness</span>
+                    <span class="case-tag">Hepatitis D</span>
+                </div>
+                <p class="case-description">Real-world evidence studies across comparative effectiveness research and hepatitis D clinical outcomes and economic burden.</p>
+            </div>
+
+            <div class="case-card" onclick="openModal('hta')">
+                <div class="case-icon">🌍</div>
+                <h3>HTA Submission & Dossier</h3>
+                <div>
+                    <span class="case-tag">NICE</span>
+                </div>
+                <p class="case-description">Complete health technology assessment submission for NICE, including economic model development, cost-effectiveness analysis, and budget impact assessment.</p>
+            </div>
+
+            <div class="case-card" onclick="openModal('proms')">
+                <div class="case-icon">💬</div>
+                <h3>Patient-Reported Outcomes</h3>
+                <div>
+                    <span class="case-tag">Multi-Therapeutic Area</span>
+                    <span class="case-tag">PRO Strategy</span>
+                </div>
+                <p class="case-description">Comprehensive PRO strategy framework across influenza, oncology, and liver disease. Includes instrument selection (Flu-iiQ, EORTC QLQ-C30/CR29, FACT-C, EQ-5D, SF-36), stakeholder messaging, and economic modeling for HTA submissions.</p>
+            </div>
+
+            <div class="case-card" onclick="openModal('economic-model')">
+                <div class="case-icon">💰</div>
+                <h3>Economic Modeling Examples</h3>
+                <div>
+                    <span class="case-tag">Influenza</span>
+                    <span class="case-tag">Markov Model</span>
+                </div>
+                <p class="case-description">State-transition Markov model for chronic disease management, including deterministic and probabilistic sensitivity analyses with comprehensive validation.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Expertise Section -->
+    <div id="expertise" class="container" style="margin-top: 4rem; margin-bottom: 3rem;">
+        <h2 style="color: #6B8E5F; margin-bottom: 1.5rem;">Areas of Expertise</h2>
+        <div style="background: linear-gradient(135deg, #E8F0E5 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">📊</span> Real World Evidence
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Claims databases, electronic health records (EHRs), registries and observational cohort data</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🎯</span> HEOR Strategy
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Strategic evidence planning and health economics & outcomes research</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🚀</span> Market Access
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Comprehensive market access strategies for global markets</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">📈</span> Pre-launch and Post-launch Tactics
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Evidence generation strategies across product lifecycle</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">💰</span> Economic Modeling
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Cost-effectiveness models, budget impact analyses, and value frameworks</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">📋</span> PRO and Clinical Endpoints
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Patient-reported outcomes and clinical endpoint strategy</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🔬</span> Prospective Studies
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Design and execution of prospective research initiatives</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🤝</span> Stakeholder Management
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Cross-functional collaboration and stakeholder engagement</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">📊</span> Project Management
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">End-to-end project leadership and execution</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">💎</span> Rare Diseases
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">Specialized expertise in orphan drug development and rare disease evidence</p>
+                </div>
+                
+                <div style="background: white; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                    <h3 style="color: #6B8E5F; margin-bottom: 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🔧</span> Medical Devices
+                    </h3>
+                    <p style="margin: 0; color: #2c3e50; line-height: 1.5; font-size: 0.95rem;">HEOR and evidence strategies for medical devices and diagnostics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Literature Review Tool Section -->
+    <div id="literature-review" class="container" style="margin-top: 4rem; margin-bottom: 3rem;">
+        <h2 style="color: #6B8E5F; margin-bottom: 1.5rem;">Literature Review Tool</h2>
+        <div style="background: linear-gradient(135deg, #E8F0E5 0%, #ffffff 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            <div style="background: white; padding: 2rem; border-radius: 8px; border-left: 4px solid #9CAF88;">
+                <h3 style="color: #6B8E5F; margin-bottom: 1rem;">Coming Soon</h3>
+                <p style="color: #2c3e50; line-height: 1.6; margin: 0;">
+                    A comprehensive literature review tool for systematic evidence synthesis and analysis is currently under development. This tool will enable efficient literature searches, evidence extraction, and synthesis across multiple databases and sources.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section -->
+    <div id="contact" class="container" style="margin-top: 3rem; margin-bottom: 3rem;">
+        <div style="background: linear-gradient(135deg, #9CAF88 0%, #B8C9A8 100%); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            <h2 style="color: #2c3e50; margin-bottom: 1.5rem; text-align: center; font-size: 1.5rem;">Contact</h2>
+            <div style="max-width: 400px; margin: 0 auto; background: white; padding: 1.5rem; border-radius: 8px;">
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.2rem;">👤</span>
+                        <div>
+                            <p style="margin: 0; font-weight: 600; color: #6B8E5F; font-size: 0.75rem;">Name</p>
+                            <p style="margin: 0; color: #2c3e50; font-size: 0.95rem;">Prajakta Bhounsule</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.2rem;">✉️</span>
+                        <div>
+                            <p style="margin: 0; font-weight: 600; color: #6B8E5F; font-size: 0.75rem;">Email</p>
+                            <p style="margin: 0; color: #2c3e50; font-size: 0.95rem;"><a href="/cdn-cgi/l/email-protection#0f7f7d6e656e647b6e6d67607a617c7a636a4f68626e6663216c6062" style="color: #2c3e50; text-decoration: none;"><span class="__cf_email__" data-cfemail="235351424942485742414b4c564d50564f4663444e424a4f0d404c4e">[email&#160;protected]</span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div id="iep-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('iep')">&times;</span>
+            <h2>Integrated Evidence Plan (IEP)</h2>
+            
+            <!-- Tab Navigation -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #E8F0E5;">
+                <button onclick="switchIEPTab('case-study')" id="tab-iep-case" style="padding: 1rem 2rem; background: #9CAF88; color: white; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Case Study
+                </button>
+                <button onclick="switchIEPTab('sample')" id="tab-iep-sample" style="padding: 1rem 2rem; background: #E8F0E5; color: #6B8E5F; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Sample IEP
+                </button>
+            </div>
+            
+            <!-- Case Study Tab Content -->
+            <div id="iep-case-study-content" class="iep-tab-content">
+                <h3 style="color: #6B8E5F; margin-bottom: 1rem;">Novel Immuno-Oncology Agent</h3>
+                
+                <div class="section">
+                    <h3>Project Overview</h3>
+                    <p>Developed a comprehensive IEP for a first-in-class checkpoint inhibitor targeting advanced melanoma, designed to support global regulatory approval and market access across 20+ countries.</p>
+                </div>
+
+                <div class="section">
+                    <h3>Key Objectives</h3>
+                    <ul class="deliverable-list">
+                        <li>Align clinical evidence generation with global HTA requirements</li>
+                        <li>Identify and address evidence gaps for priority markets</li>
+                        <li>Develop comparative effectiveness framework</li>
+                        <li>Establish health economic model inputs and structure</li>
+                        <li>Design real-world evidence collection strategy</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Project Timeline & Milestones</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Month 1-2: Landscape Assessment</h4>
+                            <p>Conducted systematic review of HTA requirements across EU5, US, Canada, and Australia. Analyzed competitor evidence strategies and payer perspectives.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Month 3-4: Evidence Gap Analysis</h4>
+                            <p>Mapped clinical development program outputs against HTA evidentiary requirements. Identified 12 critical evidence gaps requiring additional data generation.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Month 5-6: Strategy Development</h4>
+                            <p>Designed 5-year evidence generation roadmap including RCTs, RWE studies, and PRO collection. Developed economic model conceptual framework.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Month 7-8: Stakeholder Alignment</h4>
+                            <p>Facilitated cross-functional workshops with clinical, regulatory, commercial, and medical affairs. Obtained senior leadership approval for $15M evidence budget.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Key Deliverables</h3>
+                    <ul class="deliverable-list">
+                        <li>150-page Integrated Evidence Plan document</li>
+                        <li>Evidence gap analysis matrix (clinical, economic, humanistic)</li>
+                        <li>Country-specific HTA requirement mapping</li>
+                        <li>5-year evidence generation roadmap with budget</li>
+                        <li>Economic model conceptual framework</li>
+                        <li>RWE study protocol outlines (n=4)</li>
+                        <li>PRO strategy and implementation plan</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Impact Metrics</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">20+</div>
+                            <div class="metric-label">Markets Covered</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label">HTA Requirement Coverage</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$15M</div>
+                            <div class="metric-label">Evidence Budget</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">5 Years</div>
+                            <div class="metric-label">Planning Horizon</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Methodological Approach</h3>
+                    <p><strong>Systematic HTA Research:</strong> Analyzed submission guidelines from NICE, IQWiG, HAS, CADTH, PBAC, and regional payers.</p>
+                    <p><strong>Evidence Mapping:</strong> Created comprehensive matrix linking clinical trial endpoints to HTA decision criteria across jurisdictions.</p>
+                    <p><strong>Stakeholder Engagement:</strong> Conducted 25+ interviews with KOLs, payers, and patient advocacy groups to inform evidence priorities.</p>
+                    <p><strong>Economic Modeling:</strong> Developed cost-effectiveness model framework aligned with reference case requirements across major HTA bodies.</p>
+                </div>
+            </div>
+            
+            <!-- Sample IEP Tab Content -->
+            <div id="iep-sample-content" class="iep-tab-content" style="display: none;">
+                <h3 style="color: #6B8E5F; margin-bottom: 1.5rem;">Sample Integrated Evidence Plan</h3>
+                
+                <div class="section">
+                    <h3>Project Overview</h3>
+                    <p>Develop a comprehensive IEP for X designed to support global regulatory approval and market access across in the US and EU5 countries.</p>
+                </div>
+
+                <div class="section">
+                    <h3>Objectives</h3>
+                    <ul class="deliverable-list">
+                        <li>Align clinical evidence generation with global HTA requirements</li>
+                        <li>Identify and address evidence gaps for priority markets</li>
+                        <li>Establish health economic model inputs and structure</li>
+                        <li>Design real-world evidence collection strategy</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 style="color: #6B8E5F; border-bottom: 3px solid #9CAF88; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Plan in Phases</h3>
+                    
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; margin-bottom: 1.5rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Phase 1: Foundation & Team Building</h4>
+                        <ul class="deliverable-list">
+                            <li><strong>Form Core Committee:</strong> Commercial, Access, Medical, Clinical, Regulatory teams</li>
+                            <li><strong>Connect with HCPs:</strong> Establish healthcare provider engagement</li>
+                            <li><strong>Identify Timelines:</strong> Define project milestones and deadlines</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; margin-bottom: 1.5rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Phase 2: Evidence Gap Analysis & Tactical Planning</h4>
+                        <ul class="deliverable-list">
+                            <li><strong>Evaluate Evidence Gaps:</strong> Comprehensive assessment of current evidence landscape</li>
+                            <li><strong>Identify Tactics to Address Gaps:</strong> Develop specific strategies for each identified gap</li>
+                            <li><strong>Include HTA Evidence Strategy Tactics:</strong> Align tactics with health technology assessment requirements</li>
+                            <li><strong>Document for Each Tactic:</strong>
+                                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                                    <li>Need</li>
+                                    <li>Budget</li>
+                                    <li>Main stakeholders</li>
+                                    <li>Timeline</li>
+                                    <li>Impact</li>
+                                </ul>
+                            </li>
+                            <li><strong>Prioritization of Tactics:</strong> Order by importance based on:
+                                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                                    <li>Urgency</li>
+                                    <li>Feasibility</li>
+                                    <li>Budgets for HTA needs, regulatory, commercial, and clinical needs</li>
+                                </ul>
+                            </li>
+                            <li><strong>Prioritize into 3 Categories:</strong>
+                                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                                    <li>Low priority</li>
+                                    <li>Medium priority</li>
+                                    <li>High priority</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Phase 3: Stakeholder Alignment & Project Management</h4>
+                        <ul class="deliverable-list">
+                            <li><strong>Ensure Alignment from All Stakeholders:</strong> Secure buy-in and consensus across all functional areas</li>
+                            <li><strong>Keep Stakeholders Informed on Progress:</strong> Regular updates and communication on project milestones and deliverables</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="evidence-strategy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('evidence-strategy')">&times;</span>
+            <h2>Evidence Strategy & HEOR</h2>
+            
+            <!-- Tab Navigation -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #E8F0E5;">
+                <button onclick="switchEvidenceTab('rare-disease')" id="tab-evidence-rare" style="padding: 1rem 2rem; background: #9CAF88; color: white; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Ultra-Rare Metabolic Disease
+                </button>
+                <button onclick="switchEvidenceTab('pv')" id="tab-evidence-pv" style="padding: 1rem 2rem; background: #E8F0E5; color: #6B8E5F; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Polycythemia Vera
+                </button>
+            </div>
+            
+            <!-- Rare Disease Content -->
+            <div id="evidence-rare-disease-content" class="evidence-tab-content">
+                <h3 style="color: #6B8E5F; margin-bottom: 1.5rem;">Ultra-Rare Metabolic Disease</h3>
+                
+                <div class="section">
+                    <h3>Background & Challenge</h3>
+                    <p>Orphan drug for ultra-rare lysosomal storage disorder (prevalence: 1:100,000) with limited natural history data and no existing approved therapies. Challenge: demonstrating value to payers despite small patient population and high treatment costs.</p>
+                </div>
+
+                <div class="section">
+                    <h3>Strategic Evidence Framework</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Natural History Study Design</h4>
+                            <p>Established international patient registry (n=150) to characterize disease progression, healthcare utilization, and quality of life impacts over 3-year follow-up period.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Clinical Trial Evidence</h4>
+                            <p>Optimized Phase III trial design with innovative endpoints combining clinical, functional, and patient-reported outcomes. Included health economics data collection.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>RWE Collection Strategy</h4>
+                            <p>Designed expanded access program with prospective data collection to supplement pivotal trial evidence and address long-term effectiveness questions.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Value Proposition Development</h4>
+                            <p>Created multi-stakeholder value framework emphasizing prevention of irreversible complications, caregiver burden reduction, and societal benefits.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Evidence Deliverables</h3>
+                    <ul class="deliverable-list">
+                        <li>Natural history study protocol and statistical analysis plan</li>
+                        <li>Clinical trial health economics data collection guide</li>
+                        <li>RWE registry data collection forms and database specification</li>
+                        <li>Value framework document with stakeholder-specific messaging</li>
+                        <li>Economic model structure addressing ultra-rare disease challenges</li>
+                        <li>Publication plan for evidence dissemination (15 planned manuscripts)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Unique Considerations</h3>
+                    <p><strong>Small Population Challenges:</strong> Implemented Bayesian approaches and adaptive trial designs to maximize limited patient pool.</p>
+                    <p><strong>Societal Perspective:</strong> Developed broader value framework including caregiver productivity, educational impacts, and prevention of long-term complications.</p>
+                    <p><strong>Early Engagement:</strong> Facilitated Scientific Advice meetings with EMA and FDA to align on evidence requirements and accelerated pathways.</p>
+                </div>
+
+                <div class="section">
+                    <h3>Outcomes</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">150</div>
+                            <div class="metric-label">Registry Patients</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">8</div>
+                            <div class="metric-label">Countries Engaged</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">15</div>
+                            <div class="metric-label">Planned Publications</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">3 Years</div>
+                            <div class="metric-label">Registry Follow-up</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Polycythemia Vera Content -->
+            <div id="evidence-pv-content" class="evidence-tab-content" style="display: none;">
+                <h3 style="color: #6B8E5F; margin-bottom: 1.5rem;">Foundational HEOR Strategy Plan for Polycythemia Vera Asset</h3>
+                
+                <div class="section">
+                    <h3>Strategic Overview</h3>
+                    <p>Comprehensive HEOR strategy for Polycythemia Vera asset including integrated evidence planning, real-world evidence generation, and comparative effectiveness framework across multiple treatment comparators.</p>
+                </div>
+
+                <div class="section">
+                    <h3>Integrated Evidence Plan Components</h3>
+                    <ul class="deliverable-list">
+                        <li><strong>HEOR/RWE Deliverables:</strong> Linked to clinical, commercial, medical affairs, and regulatory milestones</li>
+                        <li><strong>Data Partnerships:</strong> Real-world datasets and registries including SEER (Surveillance, Epidemiology, and End Results), National Cancer Database, and Blood Cancer patient registry</li>
+                        <li><strong>Post-Market Surveillance Studies:</strong> Demonstrate clinical and economic benefit over comparators</li>
+                        <li><strong>Comparative Effectiveness Studies:</strong> Long-term evaluation across treatment options</li>
+                        <li><strong>Disease Modification Studies:</strong> Focus on reduction of surrogate clinical outcomes associated with disease modification</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Sub-Group Analysis Strategy</h3>
+                    <p>Targeted analysis across key patient populations:</p>
+                    <ul class="deliverable-list">
+                        <li>Treatment-naïve patients</li>
+                        <li>Hydroxyurea-intolerant patients</li>
+                        <li>Patients already on ruxolitinib</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>RWE Focus Areas for Differentiation</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">Safety</div>
+                            <div class="metric-label">AEs, flu-like symptoms, cytopenias</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">Event-Free</div>
+                            <div class="metric-label">Survival improvements</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">Disease Modification</div>
+                            <div class="metric-label">Progression to MF/AML, molecular response</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">HCRU</div>
+                            <div class="metric-label">Phlebotomies avoided, hospitalizations</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">QoL</div>
+                            <div class="metric-label">Quality of life & caregiver burden</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Global Value Story & Economic Modeling</h3>
+                    <ul class="deliverable-list">
+                        <li><strong>HTA Core Model:</strong> Economic model adapted per market and indication</li>
+                        <li><strong>Scenario Analysis:</strong> Treatment duration, adverse events, survival benefits</li>
+                        <li><strong>Patient Voice Integration:</strong> Patient preference studies and caregiver burden assessment</li>
+                        <li><strong>Market Access Partnership:</strong> Patient and physician outreach programs, educational programs, strong publication plan</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>HEOR Strategy by Comparator</h3>
+                    
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; margin-bottom: 1.5rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">vs Hydroxyurea (Standard of Care)</h4>
+                        
+                        <h5 style="color: #6B8E5F; margin-top: 1rem; margin-bottom: 0.5rem;">HEOR Messages</h5>
+                        <ul class="deliverable-list">
+                            <li>Demonstrate clinical benefit</li>
+                            <li>Integrate patient voice</li>
+                            <li>Demonstrate cost benefits</li>
+                        </ul>
+                        
+                        <h5 style="color: #6B8E5F; margin-top: 1rem; margin-bottom: 0.5rem;">HEOR Tactics</h5>
+                        <p><strong>Real-World Evidence:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>Demonstrate incremental benefit: reduced thromboembolic events, improved survival, better QoL, fewer hospitalizations</li>
+                            <li>Focus on subsets including HU-intolerant or treatment-naïve patients</li>
+                            <li>Meta-analysis and systematic literature reviews (SLRs)</li>
+                        </ul>
+                        
+                        <p style="margin-top: 1rem;"><strong>Quality of Life:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>Improved QoL metrics: work productivity, missed workdays, functional status</li>
+                            <li>Patient preference studies using discrete choice experiments focused on disease modification, administrative burden, and better QoL</li>
+                            <li>Highlight caregiver burden including missed workdays</li>
+                        </ul>
+                        
+                        <p style="margin-top: 1rem;"><strong>Cost-Effectiveness:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>Markov Model development</li>
+                            <li>Budget impact models</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; margin-bottom: 1.5rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">vs Ruxolitinib (JAK Inhibitors)</h4>
+                        
+                        <h5 style="color: #6B8E5F; margin-top: 1rem; margin-bottom: 0.5rem;">HEOR Messages</h5>
+                        <ul class="deliverable-list">
+                            <li>Demonstrate clinical benefit</li>
+                            <li>Demonstrate cost benefits</li>
+                        </ul>
+                        
+                        <h5 style="color: #6B8E5F; margin-top: 1rem; margin-bottom: 0.5rem;">HEOR Tactics</h5>
+                        <ul class="deliverable-list">
+                            <li>Demonstrate incremental clinical benefit with respect to side effects (e.g., infections)</li>
+                            <li>Emphasize lack of disease-modifying claims in competitors</li>
+                            <li>RWE showing BESREMi disease-modifying outcomes compared to Ruxolitinib</li>
+                            <li>Cost-effectiveness model and cost-utility analysis</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">vs Rusferitide (Emerging Competitor)</h4>
+                        
+                        <h5 style="color: #6B8E5F; margin-top: 1rem; margin-bottom: 0.5rem;">HEOR Tactics</h5>
+                        <ul class="deliverable-list">
+                            <li>Compare phlebotomy burden and associated costs</li>
+                            <li>Evaluate healthcare resource utilization differences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="rwe-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('rwe')">&times;</span>
+            <h2>Real-World Evidence Studies</h2>
+            
+            <!-- Tab Navigation -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #E8F0E5;">
+                <button onclick="switchRWETab('comparative')" id="tab-comparative" style="padding: 1rem 2rem; background: #9CAF88; color: white; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Comparative Effectiveness
+                </button>
+                <button onclick="switchRWETab('hepatitis')" id="tab-hepatitis" style="padding: 1rem 2rem; background: #E8F0E5; color: #6B8E5F; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                    Hepatitis D
+                </button>
+            </div>
+            
+            <!-- Comparative Effectiveness Content -->
+            <div id="rwe-comparative-content" class="rwe-tab-content">
+                <div class="section">
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Clinical and Economic Outcomes of ProGlide Compared with Surgical Repair of Large Bore Arterial Access</h4>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Authors:</strong> Schneider DB, Krajcer Z, Bonafede M, Thoma E, Hasegawa J, Bhounsule P, Thiel E</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Journal:</strong> Journal of Comparative Effectiveness Research. 2019 Dec;8(16):1381-1392</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>DOI:</strong> <a href="https://becarispublishing.com/doi/full/10.2217/cer-2019-0082" target="_blank" style="color: #6B8E5F; text-decoration: underline;">10.2217/cer-2019-0082</a></p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <h5 style="color: #6B8E5F; margin-bottom: 0.8rem;">Study Overview:</h5>
+                            <p>This retrospective real-world evidence study compared clinical and economic outcomes between patients undergoing arterial repair using the Perclose ProGlide vascular closure device versus surgical cutdown following large-bore arterial access procedures.</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>Study Population:</strong> Matched patients who underwent transcatheter aortic valve replacement/repair (TAVR), endovascular abdominal aortic aneurysm repair (EVAR), thoracic endovascular aortic repair (TEVAR), or balloon aortic valvuloplasty between January 2013 and April 2017.</p>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Study Design & Methodology:</h5>
+                            <ul class="deliverable-list">
+                                <li><strong>Design:</strong> Retrospective cohort study using real-world electronic health records and claims data</li>
+                                <li><strong>Data Sources:</strong> IBM Watson Health MarketScan database</li>
+                                <li><strong>Matching:</strong> Propensity score matching to balance baseline characteristics between treatment groups</li>
+                                <li><strong>Study Period:</strong> January 1, 2013 to April 24, 2017</li>
+                                <li><strong>Primary Outcomes:</strong> Complication rates, hospitalization duration, and costs</li>
+                            </ul>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Key Findings:</h5>
+                            <ul class="deliverable-list">
+                                <li><strong>Reduced Complications:</strong> Significantly lower infection rates and blood transfusion requirements in the ProGlide cohort</li>
+                                <li><strong>Shorter Hospitalization:</strong> 42.5% reduction in index hospitalization length of stay</li>
+                                <li><strong>Cost Savings:</strong> $14,687 lower hospitalization costs per patient (up to $20,599 in cost savings from shortened hospital stays)</li>
+                                <li><strong>Clinical Safety:</strong> ProGlide demonstrated comparable safety profile with improved procedural efficiency</li>
+                            </ul>
+                            
+                            <div style="margin-top: 1.5rem;">
+                                <h5 style="color: #6B8E5F; margin-bottom: 0.8rem;">Impact Metrics:</h5>
+                                <div class="metric-grid">
+                                    <div class="metric-card">
+                                        <div class="metric-value">42.5%</div>
+                                        <div class="metric-label">Shorter Hospitalization</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-value">$14,687</div>
+                                        <div class="metric-label">Cost Savings</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-value">Lower</div>
+                                        <div class="metric-label">Infection Rates</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-value">Lower</div>
+                                        <div class="metric-label">Transfusion Rates</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Conclusion:</h5>
+                            <p>The use of Perclose ProGlide for arterial repair was associated with significantly lower transfusion rates, shorter index hospitalization, and lower hospitalization costs compared with surgical cutdown, supporting the clinical and economic value of percutaneous vascular closure devices in real-world practice.</p>
+                            
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #546e7a;"><em>Note: Study conducted at IBM Watson Health with support from Abbott Vascular. Analysis utilized real-world electronic health records and claims data with rigorous matching methodology.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hepatitis D Content -->
+            <div id="rwe-hepatitis-content" class="rwe-tab-content" style="display: none;">
+                <div class="section">
+                    <p style="margin-bottom: 1.5rem; color: #546e7a;">AASLD 2024 Conference Presentations at The Liver Meeting® | San Diego, CA | November 2024</p>
+                    
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88; margin-bottom: 1.5rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Review of Evidence to Support the Use of Surrogate Endpoints and FibroScan in Hepatitis D Infection</h4>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Lead Author:</strong> Prajakta Bhounsule, Director, Health Economy and Marketing, Vir Biotechnology, Inc.</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Co-Authors:</strong> Elizabeth Kinter, Nancy Reau, Benjamin Liebov</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Presentation:</strong> Poster #1174 at The Liver Meeting® 2024 (AASLD Annual Conference)</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Session:</strong> Hepatitis – Other Infections | November 15, 2024 | San Diego, CA</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Link:</strong> <a href="https://www.researchgate.net/publication/386419778_Review_of_Evidence_to_Support_the_Use_of_Surrogate_Endpoints_and_Fibroscan_in_Hepatitis_D_Infection" target="_blank" style="color: #6B8E5F; text-decoration: underline;">ResearchGate Publication</a></p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <h5 style="color: #6B8E5F; margin-bottom: 0.8rem;">Background & Rationale:</h5>
+                            <p>Hepatitis D virus (HDV) infection is associated with higher risk of adverse clinical outcomes including cirrhosis, hepatocellular carcinoma (HCC), and mortality compared to chronic hepatitis B alone. HDV co-infection accelerates progression towards liver cancer and liver-related death by almost a decade compared to HBV mono-infected persons. To support the development of new therapies for this severe form of viral hepatitis, it is critical to understand the evidence on surrogate endpoints and non-invasive assessment methods.</p>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Research Focus:</h5>
+                            <ul class="deliverable-list">
+                                <li><strong>Surrogate Endpoints:</strong> Systematic review of evidence supporting the use of surrogate endpoints in hepatitis D clinical trials and drug development</li>
+                                <li><strong>FibroScan/VCTE:</strong> Evaluation of Vibration-Controlled Transient Elastography (VCTE) for non-invasive fibrosis assessment in HDV-infected patients</li>
+                                <li><strong>Clinical Validation:</strong> Analysis of liver stiffness measurement (LSM) as a predictor of disease progression, cirrhosis, and clinical outcomes</li>
+                                <li><strong>Regulatory Context:</strong> Assessment of evidence quality and applicability for regulatory submissions and HTA evaluations</li>
+                            </ul>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Key Insights:</h5>
+                            <p>This evidence review addresses a critical gap in hepatitis D drug development by evaluating the validity and utility of non-invasive biomarkers. Given that HDV is considered by the World Health Organization to be the most severe form of chronic viral hepatitis, with limited treatment options and no cure, establishing validated surrogate endpoints is essential for accelerating therapeutic development.</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>Clinical Impact:</strong> FibroScan (VCTE) has been validated in large cohorts worldwide across multiple liver diseases including hepatitis B and C. The technology provides non-invasive assessment of liver fibrosis and has demonstrated ability to predict liver-related events and mortality, making it a valuable tool for monitoring disease progression in HDV patients.</p>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #9CAF88;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Assessing Economic Burden Among Unique Patient Segments in an HDV-Infected Population</h4>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Presenter:</strong> Prajakta Bhounsule, Director, Health Economy and Marketing, Vir Biotechnology, Inc.</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Presentation:</strong> Poster #3294 at The Liver Meeting® 2024 (AASLD Annual Conference)</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Session:</strong> Health Services and Public Health Research | November 17, 2024 | San Diego, CA</p>
+                        
+                        <p style="margin-bottom: 1rem;"><strong>Announcement:</strong> <a href="https://www.businesswire.com/news/home/20241014730787/en/Vir-Biotechnology-Announces-Clinical-Advances-Across-Hepatitis-Delta-and-Hepatitis-B-Programs-at-AASLDs-The-Liver-Meeting-2024" target="_blank" style="color: #6B8E5F; text-decoration: underline;">Vir Biotechnology Press Release</a></p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <h5 style="color: #6B8E5F; margin-bottom: 0.8rem;">Study Overview:</h5>
+                            <p>This health economics research evaluated the economic burden of hepatitis D virus (HDV) infection across different patient segments, providing critical insights into the societal and healthcare system costs associated with this severe liver disease.</p>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Research Objectives:</h5>
+                            <ul class="deliverable-list">
+                                <li><strong>Patient Segmentation:</strong> Identification and characterization of unique patient segments within the HDV-infected population</li>
+                                <li><strong>Economic Burden Assessment:</strong> Quantification of direct and indirect costs associated with HDV infection across different patient groups</li>
+                                <li><strong>Healthcare Utilization:</strong> Analysis of resource use patterns including hospitalizations, outpatient visits, and disease management costs</li>
+                                <li><strong>Disease Progression Costs:</strong> Evaluation of economic impact across disease stages from chronic infection to cirrhosis and liver cancer</li>
+                            </ul>
+                            
+                            <h5 style="color: #6B8E5F; margin-top: 1.5rem; margin-bottom: 0.8rem;">Clinical & Policy Significance:</h5>
+                            <p><strong>Disease Severity:</strong> Chronic hepatitis delta (CHD) affects nearly 5% of people with chronic HBV infection. HDV co-infection represents the most severe form of chronic viral hepatitis with accelerated progression to cirrhosis and hepatocellular carcinoma.</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>Unmet Need:</strong> With no cure and limited treatment options, understanding the economic burden of HDV is essential for:</p>
+                            <ul class="deliverable-list">
+                                <li>Informing healthcare resource allocation and policy decisions</li>
+                                <li>Supporting value-based pricing and reimbursement discussions for novel therapies</li>
+                                <li>Demonstrating the potential economic impact of effective HDV treatments</li>
+                                <li>Guiding patient identification and screening strategies</li>
+                            </ul>
+                            
+                            <p style="margin-top: 1rem;"><strong>Value to Stakeholders:</strong> This research provides critical evidence for payers, policymakers, and healthcare systems to understand the true cost of HDV infection and the potential value proposition of emerging therapies targeting this underserved patient population.</p>
+                        </div>
+                    </div>
+
+                    <div style="background: #E8F0E5; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <p style="margin: 0; font-size: 0.95rem; color: #546e7a;"><strong>Conference Context:</strong> Both presentations were part of Vir Biotechnology's comprehensive data package at AASLD The Liver Meeting® 2024, which included clinical trial results from the Phase 2 SOLSTICE trial evaluating investigational therapies (tobevibart and elebsiran) for chronic hepatitis delta, alongside real-world evidence and health economics research.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hta-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('hta')">&times;</span>
+            <h2>NICE Technology Appraisal: Diabetes Management</h2>
+            
+            <div class="section">
+                <h3>Submission Overview</h3>
+                <p>Complete HTA submission for novel GLP-1 receptor agonist for Type 2 diabetes mellitus, following NICE Single Technology Appraisal (STA) process and meeting all methodological requirements of the NICE reference case.</p>
+            </div>
+
+            <div class="section">
+                <h3>Dossier Components</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Clinical Evidence Review</h4>
+                        <p>Systematic literature review and network meta-analysis of 47 RCTs comparing efficacy and safety versus 8 relevant comparators. GRADE quality assessment and bias evaluation.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Cost-Effectiveness Model</h4>
+                        <p>Patient-level simulation model (validated UKPDS OM2) projecting 40-year outcomes including microvascular and macrovascular complications, QALYs, and costs from NHS perspective.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Budget Impact Analysis</h4>
+                        <p>5-year budget impact model estimating financial impact on NHS considering eligible population, uptake rates, and displaced therapies.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Sensitivity Analyses</h4>
+                        <p>Comprehensive DSA (50+ parameters), PSA (10,000 iterations), and scenario analyses addressing committee concerns about long-term adherence and cardiovascular benefits.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Base Case Results</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">£18,420</div>
+                        <div class="metric-label">ICER per QALY</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">1.47</div>
+                        <div class="metric-label">QALYs Gained</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">82%</div>
+                        <div class="metric-label">PSA <£30K/QALY</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">£127M</div>
+                        <div class="metric-label">5-Yr Budget Impact</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Committee Engagement</h3>
+                <ul class="deliverable-list">
+                    <li>Addressed 23 clarification questions within 2-week deadline</li>
+                    <li>Conducted additional scenario analyses requested by ERG</li>
+                    <li>Prepared and delivered oral presentation to Appraisal Committee</li>
+                    <li>Provided revised analyses based on committee discussion</li>
+                    <li>Successfully defended modeling approach and key assumptions</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Final Recommendation</h3>
+                <p><strong>Outcome:</strong> Positive recommendation for reimbursement as second-line therapy in patients with inadequate glycemic control on metformin.</p>
+                <p><strong>Restrictions:</strong> Limited to patients with BMI ≥30 kg/m² or specific circumstances where weight loss would benefit other comorbidities.</p>
+                <p><strong>Implementation:</strong> Recommendation published and incorporated into NHS formulary within 3 months of final guidance.</p>
+            </div>
+
+            <div class="section">
+                <h3>Key Success Factors</h3>
+                <p><strong>Methodological Rigor:</strong> Adherence to NICE reference case and use of validated diabetes model (UKPDS OM2).</p>
+                <p><strong>Stakeholder Input:</strong> Early engagement with patient groups and clinical experts strengthened value proposition.</p>
+                <p><strong>Responsive Analysis:</strong> Rapid turnaround of requested sensitivity analyses and scenario modeling during appraisal process.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="proms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('proms')">&times;</span>
+            <h2>PRO Strategy</h2>
+            
+            <div class="section">
+                <h3 style="color: #6B8E5F; margin-bottom: 1rem;">What is PRO Strategy?</h3>
+                <p>PRO Strategy is a structured plan for how patient-reported outcomes will be selected, collected, analyzed, and used across a clinical development program to support:</p>
+                <ul class="deliverable-list">
+                    <li>Regulatory labeling</li>
+                    <li>Health technology assessment (HTA)</li>
+                    <li>Value demonstration</li>
+                    <li>Clinical differentiation</li>
+                    <li>Scientific publication</li>
+                </ul>
+                <p style="margin-top: 1rem;">It helps to capture the patient perspective on symptoms, functioning, and quality of life beyond health markers and supports payer needs.</p>
+            </div>
+
+            <div class="section">
+                <h3 style="color: #6B8E5F; border-bottom: 3px solid #9CAF88; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Key Components of a PRO Strategy</h3>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">1️⃣ Early Planning</h4>
+                    <ul class="deliverable-list">
+                        <li>Define PRO objectives during Phase I/II</li>
+                        <li>Align with Target Product Profile (TPP)</li>
+                        <li>Identify claims you want to support (symptom improvement, delay in deterioration, etc.)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">2️⃣ Endpoint Selection</h4>
+                    <ul class="deliverable-list">
+                        <li>Choose validated instruments (e.g., EORTC QLQ-C30, FACT-G, EQ-5D)</li>
+                        <li>Ensure conceptual relevance to disease and mechanism</li>
+                        <li>Define:
+                            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                                <li>Primary vs secondary PRO endpoints</li>
+                                <li>Hierarchy and multiplicity plan</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">3️⃣ Instrument Selection</h4>
+                    <ul class="deliverable-list">
+                        <li>Disease-specific modules</li>
+                        <li>Core cancer QoL tools</li>
+                        <li>Utility measures (e.g., EQ-5D for cost-effectiveness)</li>
+                        <li>PRO-CTCAE for symptom toxicity</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">4️⃣ Timing & Data Collection</h4>
+                    <ul class="deliverable-list">
+                        <li>Baseline assessment</li>
+                        <li>Longitudinal follow-up</li>
+                        <li>Minimize missing data</li>
+                        <li>Digital vs paper capture (ePRO)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">5️⃣ Statistical Planning</h4>
+                    <ul class="deliverable-list">
+                        <li>Define minimally important difference (MID)</li>
+                        <li>Prespecify deterioration analyses</li>
+                        <li>Plan handling of missing data</li>
+                        <li>Adjust for multiplicity</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">6️⃣ Regulatory Alignment</h4>
+                    <ul class="deliverable-list">
+                        <li>Engage FDA/EMA early</li>
+                        <li>Align with PRO guidance documents</li>
+                        <li>Ensure instrument validation supports intended claim</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">7️⃣ HTA & HEOR Integration</h4>
+                    <ul class="deliverable-list">
+                        <li>Include utility measure for QALY modeling</li>
+                        <li>Map disease-specific instruments if needed</li>
+                        <li>Ensure endpoints resonate with payer priorities (function, symptom burden)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 0.8rem;">8️⃣ Communication & Dissemination</h4>
+                    <ul class="deliverable-list">
+                        <li>Publication plan</li>
+                        <li>Congress abstracts</li>
+                        <li>Integration into value dossiers</li>
+                        <li>Support field medical narratives</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>PRO Instruments Table</h3>
+                <p style="margin-bottom: 2rem;">Comprehensive overview of patient-reported outcome instruments with measurement details, value messages, and stakeholder relevance.</p>
+                
+                <!-- Table Row 1: Influenza -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Row 1: Influenza & Generic Health Status</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">PRO:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>Flu-iiQ (Influenza Impact and Intensity Questionnaire)</li>
+                            <li>SF-36</li>
+                            <li>EQ-5D</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">What does it measure:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>Flu-iiQ:</strong> Used to assess severity of influenza symptoms (intensity) and their effect on daily life (impact).</li>
+                            <li><strong>SF-36:</strong> Measures generic health status and quality of life across 8 domains, including physical functioning, bodily pain, mental health-related quality of life.</li>
+                            <li><strong>EQ-5D:</strong> Used for health utility / cost-effectiveness modelling</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">Value Message:</strong></p>
+                        <p>Patients with intervention report higher health-related quality of life</p>
+                    </div>
+                    
+                    <div>
+                        <p><strong style="color: #6B8E5F;">Stakeholders:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>HTA:</strong> HTA especially in EU</li>
+                            <li><strong>Patients:</strong> Improved quality of life outcomes</li>
+                            <li><strong>Physicians:</strong> Objective symptom and function assessment</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Table Row 2: Treatment Satisfaction, CLDQ, WPAI -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Row 2: Treatment Satisfaction, Liver Disease & Work Productivity</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">PRO:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>TSQM - 9 (Treatment Satisfaction Questionnaire for Medication)</li>
+                            <li>Chronic Liver Disease Questionnaire (CLDQ)</li>
+                            <li>Work Productivity and Activity Impairment (WPAI)</li>
+                            <li>EQ-5D</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">What does it measure:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>TSQM-9:</strong> Treatment satisfaction among patients across four domains: effectiveness, side effects, convenience of dosing, and global satisfaction with medication</li>
+                            <li><strong>CLDQ:</strong> Measures the impact of chronic liver diseases (e.g., cirrhosis, HBV, HCV, NASH/MASH) on patient well-being</li>
+                            <li><strong>WPAI:</strong> Measures absenteeism, presenteeism, overall work productivity impairment, and daily activity impairment</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">Value Message:</strong></p>
+                        <p>Patients with intervention report higher QoL compared to placebo or comparator. Used for health utility / cost-effectiveness modelling.</p>
+                    </div>
+                    
+                    <div>
+                        <p><strong style="color: #6B8E5F;">Stakeholders:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>HTA:</strong> HTA especially in EU - Health-related Quality of life</li>
+                            <li><strong>Patients:</strong> Improved treatment satisfaction and quality of life</li>
+                            <li><strong>Physicians:</strong> Patient satisfaction and adherence insights</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Table Row 3: Oncology - Colorectal Cancer -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #9CAF88;">
+                    <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Row 3: Oncology - Colorectal Cancer</h4>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">PRO:</strong></p>
+                        <ul class="deliverable-list">
+                            <li>EORTC QLQ-C30 (European Organisation for Research and Treatment of Cancer Core Quality of Life Questionnaire)</li>
+                            <li>EORTC QLQ-CR29 (Colorectal module)</li>
+                            <li>FACT-C (Functional Assessment of Cancer Therapy - Colorectal)</li>
+                            <li>EQ-5D</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">What does it measure:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>EORTC QLQ-C30:</strong> Used in metastatic CRC to measure health status, physical, emotional, cognitive and social functioning and symptoms (fatigue, pain, nausea etc). QLQ-C30 + CR29 combination is the most common QoL framework in CRC clinical trials.</li>
+                            <li><strong>EORTC QLQ-CR29:</strong> It measures colorectal-related symptoms: Bowel frequency, Fecal incontinence, Abdominal pain, Stoma-related issues, Body image concerns</li>
+                            <li><strong>FACT-C:</strong> FACT-C is a generic cancer quality-of-life (QoL) instrument that measures physical, social, emotional and functional well-being.</li>
+                            <li><strong>EQ-5D:</strong> Used for health utility / cost-effectiveness modelling</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong style="color: #6B8E5F;">Value Message:</strong></p>
+                        <p>Patients with intervention report higher health-related quality of life. Used for health utility / cost-effectiveness modelling.</p>
+                    </div>
+                    
+                    <div>
+                        <p><strong style="color: #6B8E5F;">Stakeholders:</strong></p>
+                        <ul class="deliverable-list">
+                            <li><strong>HTA:</strong> HTA especially in EU - Health-related Quality of life</li>
+                            <li><strong>Patients:</strong> Improved cancer-specific quality of life</li>
+                            <li><strong>Physicians:</strong> Comprehensive symptom and function assessment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 style="color: #6B8E5F; border-bottom: 3px solid #9CAF88; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Instruments Used by Therapeutic Area</h3>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 2px solid #E8F0E5;">
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Hepatitis D</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">TSQM - 9</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">CLDQ</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">EQ-5D</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">WPAI</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Influenza</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">Flu-iiQ</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">SF-36</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #6B8E5F; margin-bottom: 1rem;">Oncology - Colorectal Cancer</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">EORTC QLQ-C30</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">CR29</div>
+                            <div style="background: #E8F0E5; padding: 0.8rem; border-radius: 6px; text-align: center; font-weight: 500;">FACT-C</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="economic-model-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('economic-model')">&times;</span>
+            <h2>Economic Modeling Examples</h2>
+            
+            <div class="section">
+                <h3>Model Overview</h3>
+                <p>State-transition Markov cohort model evaluating cost-effectiveness of novel triple therapy inhaler versus dual therapy and long-acting bronchodilator monotherapy in moderate-to-severe COPD patients.</p>
+            </div>
+
+            <div class="section">
+                <h3>Model Structure</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Health States</h4>
+                        <p>Five health states defined by GOLD severity classification (moderate, severe, very severe), acute exacerbations (moderate, severe requiring hospitalization), and absorbing state (death).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Cycle Length & Time Horizon</h4>
+                        <p>3-month cycles over lifetime horizon (30 years) with half-cycle correction. Annual discount rate of 3.5% for costs and QALYs (UK perspective).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Transition Probabilities</h4>
+                        <p>Derived from meta-analysis of pivotal trials (n=3 RCTs, 8,000+ patients) for treatment effects. Background progression and mortality from published cohort studies and UK life tables.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Cost & Utility Inputs</h4>
+                        <p>NHS reference costs for hospitalizations and primary care. EQ-5D utilities from trial data with published decrements for exacerbations and GOLD progression.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Key Model Parameters</h3>
+                <ul class="deliverable-list">
+                    <li>Exacerbation rates: RR 0.65 (95% CI: 0.58-0.73) vs dual therapy</li>
+                    <li>Hospitalization reduction: RR 0.58 (95% CI: 0.49-0.69)</li>
+                    <li>FEV₁ improvement: +98 mL vs dual therapy (statistically significant)</li>
+                    <li>Mortality: Indirect effect through exacerbation reduction (validated approach)</li>
+                    <li>Treatment costs: £1,460/year (triple), £980/year (dual), £520/year (mono)</li>
+                    <li>Exacerbation costs: £54 (moderate), £2,835 (hospitalized)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Model Validation</h3>
+                <p><strong>Internal Validation:</strong> Extreme value testing, null comparator checks, Excel formula auditing by independent analyst.</p>
+                <p><strong>External Validation:</strong> Model predictions compared against published COPD natural history studies and registry data. Good agreement achieved for 5-year exacerbation rates and mortality.</p>
+                <p><strong>Cross-Validation:</strong> Results replicated independently in TreeAge and R to ensure programming accuracy.</p>
+            </div>
+
+            <div class="section">
+                <h3>Base Case Results (vs Dual Therapy)</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">£12,850</div>
+                        <div class="metric-label">ICER per QALY</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0.47</div>
+                        <div class="metric-label">Incremental QALYs</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">£6,045</div>
+                        <div class="metric-label">Incremental Costs</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">96%</div>
+                        <div class="metric-label">PSA Cost-Effective</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Sensitivity & Scenario Analyses</h3>
+                <p><strong>Deterministic SA:</strong> Tornado diagram identified exacerbation rates, utility values, and hospitalization costs as key drivers. Results remained <£20K/QALY across plausible ranges.</p>
+                <p><strong>Probabilistic SA:</strong> 10,000 Monte Carlo iterations with distributional assumptions (beta for probabilities/utilities, gamma for costs, lognormal for RRs). Cost-effectiveness acceptability curve demonstrated 96% probability of cost-effectiveness at £30K/QALY threshold.</p>
+                <p><strong>Scenario Analyses:</strong> Alternative time horizons (5, 10, 20 years), discount rates (0%, 6%), treatment effect waning (none, 5 years), and societal perspective (including productivity losses).</p>
+            </div>
+
+            <div class="section">
+                <h3>Model Applications</h3>
+                <ul class="deliverable-list">
+                    <li>NICE technology appraisal submission (approved 2023)</li>
+                    <li>Adapted for SMC, CADTH, PBAC submissions (4 jurisdictions)</li>
+                    <li>Budget impact analyses for NHS England and regional formularies</li>
+                    <li>Payer value dossiers for managed care negotiations</li>
+                    <li>Published in PharmacoEconomics with model made publicly available</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function openModal(modalId) {
+            document.getElementById(modalId + '-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId + '-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchRWETab(tab) {
+            // Hide all tab contents
+            document.getElementById('rwe-comparative-content').style.display = 'none';
+            document.getElementById('rwe-hepatitis-content').style.display = 'none';
+            
+            // Reset all tab buttons
+            document.getElementById('tab-comparative').style.background = '#E8F0E5';
+            document.getElementById('tab-comparative').style.color = '#6B8E5F';
+            document.getElementById('tab-hepatitis').style.background = '#E8F0E5';
+            document.getElementById('tab-hepatitis').style.color = '#6B8E5F';
+            
+            // Show selected tab and highlight button
+            if (tab === 'comparative') {
+                document.getElementById('rwe-comparative-content').style.display = 'block';
+                document.getElementById('tab-comparative').style.background = '#9CAF88';
+                document.getElementById('tab-comparative').style.color = 'white';
+            } else if (tab === 'hepatitis') {
+                document.getElementById('rwe-hepatitis-content').style.display = 'block';
+                document.getElementById('tab-hepatitis').style.background = '#9CAF88';
+                document.getElementById('tab-hepatitis').style.color = 'white';
+            }
+        }
+
+        function switchIEPTab(tab) {
+            // Hide all tab contents
+            document.getElementById('iep-case-study-content').style.display = 'none';
+            document.getElementById('iep-sample-content').style.display = 'none';
+            
+            // Reset all tab buttons
+            document.getElementById('tab-iep-case').style.background = '#E8F0E5';
+            document.getElementById('tab-iep-case').style.color = '#6B8E5F';
+            document.getElementById('tab-iep-sample').style.background = '#E8F0E5';
+            document.getElementById('tab-iep-sample').style.color = '#6B8E5F';
+            
+            // Show selected tab and highlight button
+            if (tab === 'case-study') {
+                document.getElementById('iep-case-study-content').style.display = 'block';
+                document.getElementById('tab-iep-case').style.background = '#9CAF88';
+                document.getElementById('tab-iep-case').style.color = 'white';
+            } else if (tab === 'sample') {
+                document.getElementById('iep-sample-content').style.display = 'block';
+                document.getElementById('tab-iep-sample').style.background = '#9CAF88';
+                document.getElementById('tab-iep-sample').style.color = 'white';
+            }
+        }
+
+        function switchEvidenceTab(tab) {
+            // Hide all tab contents
+            document.getElementById('evidence-rare-disease-content').style.display = 'none';
+            document.getElementById('evidence-pv-content').style.display = 'none';
+            
+            // Reset all tab buttons
+            document.getElementById('tab-evidence-rare').style.background = '#E8F0E5';
+            document.getElementById('tab-evidence-rare').style.color = '#6B8E5F';
+            document.getElementById('tab-evidence-pv').style.background = '#E8F0E5';
+            document.getElementById('tab-evidence-pv').style.color = '#6B8E5F';
+            
+            // Show selected tab and highlight button
+            if (tab === 'rare-disease') {
+                document.getElementById('evidence-rare-disease-content').style.display = 'block';
+                document.getElementById('tab-evidence-rare').style.background = '#9CAF88';
+                document.getElementById('tab-evidence-rare').style.color = 'white';
+            } else if (tab === 'pv') {
+                document.getElementById('evidence-pv-content').style.display = 'block';
+                document.getElementById('tab-evidence-pv').style.background = '#9CAF88';
+                document.getElementById('tab-evidence-pv').style.color = 'white';
+            }
+        }
+
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Navigation functionality with smooth scrolling
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Scroll to section
+                const section = this.getAttribute('data-section');
+                const targetElement = document.getElementById(section);
+                if (targetElement) {
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Smooth scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.case-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
